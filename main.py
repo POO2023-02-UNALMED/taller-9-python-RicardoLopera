@@ -6,6 +6,42 @@ root.title("Calculadora POO")
 root.resizable(0,0)
 root.geometry("")
 
+#Eventos
+
+numeros = []
+accion = []
+
+def numero(digito):
+    if "+-/*".count(pantalla.get()) == 1:
+        pantalla.delete(0, "end")
+    pantalla.insert(100, digito)
+
+def operacion(simbolo):
+    numeros.append(int(pantalla.get()))
+    accion.append(simbolo)
+    pantalla.delete(0,"end")
+    pantalla.insert(0,"+")
+
+def resultado(numero, accion):
+    numero.append(int(pantalla.get()))
+    pantalla.delete(0,"end")
+
+    if accion[0] == "+":
+        pantalla.insert(0, numero[0]+numero[1])
+
+    elif accion[0] == "-":
+        pantalla.insert(0, numero[0]-numero[1])
+    
+    elif accion[0] == "*":
+        pantalla.insert(0,numero[0]*numero[1])
+    
+    elif accion[0] == "/":
+        if numero[1] != 0:
+            pantalla.insert(0,numero[0]/numero[1])
+        else:
+            pantalla.insert(0, "No se puede dividir entre cero")
+
+
 # Configuración pantalla de salida 
 pantalla = Entry(root, width=40, bg="black", fg="white", borderwidth=0, font=("arial", 18, "bold"))
 pantalla.grid(row=0, column=0, columnspan=4, padx=1, pady=1)
